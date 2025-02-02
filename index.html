@@ -1,0 +1,293 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Protocolo</title>
+        <link rel="stylesheet" href="./css/index.css">
+        <link rel="icon" href="./assets/prefeitura-logo.png" type="image/png">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="./js/index.js"></script>
+        <script src="./script/script.js"></script>
+                    <style>
+                    
+            .form-files {
+                display: none;
+            }
+            .footer-image {
+        max-width: 70%;
+        height: auto;
+    }
+    .login-btn {
+        background-color: #009851; 
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .login-btn:hover {
+        background-color: #45a049; /* Darker Green */
+    }
+
+                </style>
+                
+    </head>
+    <body>
+        <div class="feedback" id="feedback">
+            
+        </div>
+        <header>
+            <nav>
+                <ul>
+                    <a>
+                        <li><a href="https://www.instagram.com/prefeituradepaudosferros/">
+                            <img src="./assets/instagram.png">
+                            </a>
+                        </li>
+                    </a>
+                    <a>
+                        <li><a href="https://www.facebook.com/prefeituradepaudosferros/">
+                            <img src="./assets/facebook.png">
+                            </a>
+                    </a>
+                    <a>
+                        <li><a href="https://twitter.com/paudosferros">
+                            <img src="./assets/twitter.png">
+                            </a>
+                    </a>
+                    <a>
+                        <li><a href="https://www.youtube.com/c/prefeituramunicipaldepaudosferros">
+                            <img src="./assets/youtube.png">
+                            </a>
+                    </a>
+                    <a>
+                        <li><a href="https://instagram.com">
+                            <img src="./assets/copy-url.png">
+                            </a>
+                    </a>
+                </ul>
+            </nav>
+
+            <div class="user-options">
+                <p id="alter-font">Tamanho da fonte</p>
+                <button onclick="increaseFont()">A+</button>
+                <p>|</p>
+                <button onclick="decreaseFont()">A-</button>
+            </div>
+        </header>
+        <main>
+            <section>
+                <form id="form" onsubmit="validateEmails()">
+                    <div class="form-header">
+                        <img style="margin-top: 5%;" src="./assets/prefeitura-logo.png" alt="Logo">
+                        <h1>ABERTURA DE PROTOCOLO DE SERVIDORES</h1>
+                        <p>Serviços SEAD</p>
+                    </div>
+        
+                    <input required id="name" name="name" placeholder="Nome completo">
+                    <input required type="email" id="email" name="email" placeholder="Email">
+                    <input style="margin-top: 16px;" required type="email" id="confirmEmail" placeholder="Confirme seu Email">
+                    
+                    <div class="form-part-2">
+                    <input type="text" required name="matricula" id="matricula" placeholder="Matrícula" maxlength="14" >
+
+                    <input type="tel" maxlength="15" onkeyup="handlePhone(event)" required name="phone" id="phone" placeholder="Telefone">
+
+                        <input required id="endereco" name="endereco" placeholder="Endereço">
+
+                        <select required id="vinculo" name="vinculo" title="Vínculo">
+                            <option value="" hidden>Vinculo</option>
+                            <option value="Efetivo">Efetivo</option>
+                            <option value="Comissionado">Comissionado</option>
+                            <option value="Comissionado">Contratado</option>
+                            <option value="Estagiario">Estagiário</option>
+                            <option value="Outro">Outro</option>
+
+                        </select>
+                        <select required id="lotacao" name="lotacao" title="Lotação">
+                        <option value="" hidden>Unidade de trabalho</option>
+                        <option value="SEINFRA - Sede da Secretaria">SEINFRA - Sede da Secretaria</option>
+                        <option value="SEINFRA - 'BNB (Almoxarifados- depósitos e garagem municipal)'">SEINFRA - 'BNB (Almoxarifados- depósitos e garagem municipal)'</option>
+                        <option value="SEINFRA - Cemitério São Manoel">SEINFRA - Cemitério São Manoel</option>
+                        <option value="SEINFRA - Cemitério parque das saudades">SEINFRA - Cemitério parque das saudades</option>
+                        <option value="SEINFRA - Almoxarifado da iluminação">SEINFRA - Almoxarifado da iluminação</option>
+                        <option value="SEINFRA - CENTRO MUNICIPAL DE EDUCAÇÃO INFANTIL Profª VERA LÚCIA DIÓGENES">SEINFRA - CENTRO MUNICIPAL DE EDUCAÇÃO INFANTIL Profª VERA LÚCIA DIÓGENES</option>
+                        <option value="SEDUC - Centro Municipal De Educação Infantil Profª Telma Batalha">SEDUC - Centro Municipal De Educação Infantil Profª Telma Batalha</option>
+                        <option value="SEDUC - Centro Municipal De Educação Infantil Djalma De Freitas Nobre">SEDUC - Centro Municipal De Educação Infantil Djalma De Freitas Nobre</option>
+                        <option value="SEDUC - Centro Municipal De Educação Infantil Mª Das Graças Feitosa Torquato">SEDUC - Centro Municipal De Educação Infantil Mª Das Graças Feitosa Torquato</option>
+                        <option value="SEDUC - Centro Municipal De Educação Infantil Profª Mª Do Socorro Queiroz Lima">SEDUC - Centro Municipal De Educação Infantil Profª Mª Do Socorro Queiroz Lima</option>
+                        <option value="SEDUC - Centro Municipal De Educação Infantil Profª Marta Batalha">SEDUC - Centro Municipal De Educação Infantil Profª Marta Batalha</option>
+                        <option value="SEDUC - Centro Municipal De Educação Infantil Santa Terezinha">SEDUC - Centro Municipal De Educação Infantil Santa Terezinha</option>
+                        <option value="SEDUC - Centro Municipal De Educação Infantil Severino De Freitas Rêgo">SEDUC - Centro Municipal De Educação Infantil Severino De Freitas Rêgo</option>
+                        <option value="SEDUC - Escola Municipal Dr. José Torquato De Figueiredo">SEDUC - Escola Municipal Dr. José Torquato De Figueiredo</option>
+                        <option value="SEDUC - ESCOLA MUNICIPAL ELPÍDIO VIRGÍNIO CHAVES">SEDUC - ESCOLA MUNICIPAL ELPÍDIO VIRGÍNIO CHAVES</option>
+                        <option value="SEDUC - Escola Municipal Francisco Aires Segundo">SEDUC - Escola Municipal Francisco Aires Segundo</option>
+                        <option value="SEDUC - Escola Municipal Francisco Torquato Do Rêgo">SEDUC - Escola Municipal Francisco Torquato Do Rêgo</option>
+                        <option value="SEDUC - ESCOLA MUNICIPAL PROFESSORA NILA RÊGO">SEDUC - ESCOLA MUNICIPAL PROFESSORA NILA RÊGO</option>
+                        <option value="SEDUC - Escola Municipal Professor Severino Bezerra">SEDUC - Escola Municipal Professor Severino Bezerra</option>
+                        <option value="SEDUC - Escola Municipal São Benedito">SEDUC - Escola Municipal São Benedito</option>
+                        <option value="SEDUC - Unidade De Ensino V Francelino Granjeiro">SEDUC - Unidade De Ensino V Francelino Granjeiro</option>
+                        <option value="SEDUC - Unidade De Ensino Viii José Alves Pereira">SEDUC - Unidade De Ensino Viii José Alves Pereira</option>
+                        <option value="SEDUC - Unidade De Ensino Xii Narcisia Amélia Do Nascimento">SEDUC - Unidade De Ensino Xii Narcisia Amélia Do Nascimento</option>
+                        <option value="SEDUC - Biblioteca Indústria Do Conhecimento">SEDUC - Biblioteca Indústria Do Conhecimento</option>
+                        <option value="SESAU - USF VEREADOR JOÃO QUEIROZ DE SOUZA">SESAU - USF VEREADOR JOÃO QUEIROZ DE SOUZA</option>
+                        <option value="SESAU - USF ANTONIA BERNADETE COSMIRO">SESAU - USF ANTONIA BERNADETE COSMIRO</option>
+                        <option value="SESAU - USF CAETANO BEZERRA DO NASCIMENTO">SESAU - USF CAETANO BEZERRA DO NASCIMENTO</option>
+                        <option value="SESAU - USF DANIEL GAMA DA SILVA">SESAU - USF DANIEL GAMA DA SILVA</option>
+                        <option value="SESAU - USF DR. CLEODON CARLOS DE ANDRADE">SESAU - USF DR. CLEODON CARLOS DE ANDRADE</option>
+                        <option value="SESAU - USF DR. PEDRO DIÓGENES JUNIOR">SESAU - USF DR. PEDRO DIÓGENES JUNIOR</option>
+                        <option value="SESAU - USF DR. ALIATÁ CHAVES DE QUEIROZ">SESAU - USF DR. ALIATÁ CHAVES DE QUEIROZ</option>
+                        <option value="SESAU - USF MÃE CRISTINA">SESAU - USF MÃE CRISTINA</option>
+                        <option value="SESAU - USF MARIA FIEL DE SOUZA">SESAU - USF MARIA FIEL DE SOUZA</option>
+                        <option value="SESAU - USF DR. JOSÉ EDMILSON DE HOLANDA">SESAU - USF DR. JOSÉ EDMILSON DE HOLANDA</option>
+                        <option value="SESAU - USF VER. JOANA CACILDA DE BESSA">SESAU - USF VER. JOANA CACILDA DE BESSA</option>
+                        <option value="SESAU - USF MARIA LUCICLEIDE DE QUEIROZ DIAS">SESAU - USF MARIA LUCICLEIDE DE QUEIROZ DIAS</option>
+                        <option value="SESAU - LABORATÓRIO MUNICIPAL DE ANÁLISES CLÍNICAS">SESAU - LABORATÓRIO MUNICIPAL DE ANÁLISES CLÍNICAS</option>
+                        <option value="SESAU - CENTRAL DE ABASTECIMENTO FARMACEUTICO – CAF">SESAU - CENTRAL DE ABASTECIMENTO FARMACEUTICO – CAF</option>
+                        <option value="SESAU - CENTRAL DE REGULAÇÃO DE SERVIÇOS DE SAÚDE">SESAU - CENTRAL DE REGULAÇÃO DE SERVIÇOS DE SAÚDE</option>
+                        <option value="SESAU - CENTRO DE ESPECIALIDADES MÉDICA - CEM">SESAU - CENTRO DE ESPECIALIDADES MÉDICA - CEM</option>
+                        <option value="SESAU - SEDE DA SECRETARIA MUNICIPAL DA SAÚDE">SESAU - SEDE DA SECRETARIA MUNICIPAL DA SAÚDE</option>
+                        <option value="SESAU - CENTRO DE ESPECIALIDADES EM ODONTOLOGIA – CEO">SESAU - CENTRO DE ESPECIALIDADES EM ODONTOLOGIA – CEO</option>
+                        <option value="SESAU - SERVIÇO DE ATENDIMENTO MÓVEL DE URGENCIA – SAMU">SESAU - SERVIÇO DE ATENDIMENTO MÓVEL DE URGENCIA – SAMU</option>
+                        <option value="SESAU - VIGILÂNCIA EM SAÚDE">SESAU - VIGILÂNCIA EM SAÚDE</option>
+                        <option value="SESAU - POLO DE ACADEMIA">SESAU - POLO DE ACADEMIA</option>
+                        <option value="SESAU - CENTRO DE ATENÇÃO PSICOSSOCIAL (CAPS II)">SESAU - CENTRO DE ATENÇÃO PSICOSSOCIAL (CAPS II)</option>
+                        <option value="SESAU - NÚCLEO DE CONTROLE AS ZOONOSES">SESAU - NÚCLEO DE CONTROLE AS ZOONOSES</option>
+                        <option value="SESAU - UNIDADE MÓVEL DE SAÚDE ANIMAL">SESAU - UNIDADE MÓVEL DE SAÚDE ANIMAL</option>
+                        <option value="SEDES - CRAS CENTRAL">SEDES - CRAS CENTRAL</option>
+                        <option value="SEDES - CRAS MANOEL DEODATO">SEDES - CRAS MANOEL DEODATO</option>
+                        <option value="SEDES - CRAS RIACHO DO MEIO">SEDES - CRAS RIACHO DO MEIO</option>
+                        <option value="SEDES - CREAS">SEDES - CREAS</option>
+                        <option value="SEDES - ESCRITÓRIO SOCIAL">SEDES - ESCRITÓRIO SOCIAL</option>
+                        <option value="SEDES - CONSELHO TUTELAR">SEDES - CONSELHO TUTELAR</option>
+                        <option value="SEDES - SEDES">SEDES - SEDES</option>
+                        <!-- Novas opções de secretarias -->
+                        <option value="CONTROLADORIA GERAL DO MUNICÍPIO">CONTROLADORIA GERAL DO MUNICÍPIO</option>
+                        <option value="DEPARTAMENTO MUNICIPAL DE TRÂNSITO">DEPARTAMENTO MUNICIPAL DE TRÂNSITO</option>
+                        <option value="GABINETE DA PREFEITA">GABINETE DA PREFEITA</option>
+                        <option value="PROCURADORIA GERAL DO MUNICÍPIO">PROCURADORIA GERAL DO MUNICÍPIO</option>
+                        <option value="SECRETARIA MUNICIPAL DE ADMINISTRAÇÃO">SECRETARIA MUNICIPAL DE ADMINISTRAÇÃO</option>
+                        <option value="SECRETARIA MUNICIPAL DE CULTURA E TURISMO">SECRETARIA MUNICIPAL DE CULTURA E TURISMO</option>
+                        <option value="SECRETARIA MUNICIPAL DE DESENVOLVIMENTO RURAL">SECRETARIA MUNICIPAL DE DESENVOLVIMENTO RURAL</option>
+                        <option value="SECRETARIA MUNICIPAL DE DESENVOLVIMENTO SOCIAL">SECRETARIA MUNICIPAL DE DESENVOLVIMENTO SOCIAL</option>
+                        <option value="SECRETARIA MUNICIPAL DE EDUCAÇÃO">SECRETARIA MUNICIPAL DE EDUCAÇÃO</option>
+                        <option value="SECRETARIA MUNICIPAL DE ESPORTE E LAZER">SECRETARIA MUNICIPAL DE ESPORTE E LAZER</option>
+                        <option value="SECRETARIA MUNICIPAL DE FINANÇAS">SECRETARIA MUNICIPAL DE FINANÇAS</option>
+                        <option value="SECRETARIA MUNICIPAL DE GOVERNO">SECRETARIA MUNICIPAL DE GOVERNO</option>
+                        <option value="SECRETARIA MUNICIPAL DE INFRAESTRUTURA">SECRETARIA MUNICIPAL DE INFRAESTRUTURA</option>
+                        <option value="SECRETARIA MUNICIPAL DE MEIO AMBIENTE">SECRETARIA MUNICIPAL DE MEIO AMBIENTE</option>
+                        <option value="SECRETARIA MUNICIPAL DE PLANEJAMENTO E DESENVOLVIMENTO ECONÔMICO">SECRETARIA MUNICIPAL DE PLANEJAMENTO E DESENVOLVIMENTO ECONÔMICO</option>
+                        <option value="SECRETARIA MUNICIPAL DE SAÚDE">SECRETARIA MUNICIPAL DE SAÚDE</option>
+                        <option value="SECRETARIA MUNICIPAL DE TRIBUTAÇÃO">SECRETARIA MUNICIPAL DE TRIBUTAÇÃO</option>
+                        </select>
+
+                    </div>
+                    <p id="form-requerimento">Serviços SEAD</p>
+
+                    <input  required type="text" name="assunto" id="assunto" placeholder="Assunto">
+
+                    <textarea id="protocolo" name="texto" id="texto" required placeholder="Descrição do requerimento"></textarea>                       
+                    <div class="form-part-3">
+
+                            <div class="y-n-field">
+                            <p>É preciso envio de alguma documentação??</p>
+                            <label for="def-1">
+                                <input required title="Sim" name="deficiencia" id="def-1" type="radio" value="true" onchange="mostrarDiv()">
+                                Sim
+                            </label>
+                            <label for="def-2">
+                                <input required title="Não" name="deficiencia" id="def-2" type="radio" value="false" onchange="mostrarDiv()">
+                                Não
+                            </label>
+                        </div>
+                    </div>
+            
+                    <div class="form-files">
+                        <div>
+                            <img src="./assets/Anexa documentos necessarios.svg">
+                            <input name="anexos" id="anexos" type="file" multiple>
+                            <p>* Apenas arquivos PDF</p>
+                        </div>
+                        <div>
+                            <input id="nome_documento" name="nome_documento" placeholder="Digite os documentos anexados">
+                           
+                        </div>
+                    </div>
+    <script>
+            window.onload = function() {
+                mostrarDiv();
+            };
+
+            function mostrarDiv() {
+                var possuiDeficiencia = document.getElementById("def-1").checked;
+                var formFilesDiv = document.querySelector(".form-files");
+
+                if (possuiDeficiencia) {
+                    formFilesDiv.style.display = "block";
+                } else {
+                    formFilesDiv.style.display = "none"; 
+                }
+            }
+
+        document.getElementsByTagName('form')[0].addEventListener('submit', function(event) {
+            event.preventDefault();
+            validateEmails()
+            const resultado = validateEmails();
+            if (resultado !== true) {
+                return;
+            }
+        })        </script> 
+
+                    <div class="form-part-4">
+                        <div>
+                            <input required type="checkbox">
+                        <label>Declaro estar ciente de que o protocolo será enviado e avaliado pela SEAD.</label>
+                        </div>
+                        <div>
+                            <input required type="checkbox">
+                            <label> Declaro que as informações prestadas são inteiramente verdadeiras.</label>                
+                        </div>
+                    </div>
+        
+                    <div class="captcha"></div>
+        
+                    <button type="submit" id="botao">
+                        ENVIAR
+                    </button>
+                </form>
+            </section>
+        </main>
+    <footer>
+        <div>
+            <div>    
+                <img src="./assets/phone.png">
+                (84) 99858-6712
+            </div>
+            <div>
+                            <button class="login-btn" onclick="location.href='protocolo';">Gerenciar</button>
+
+            </div>
+            <div>
+                <img src="./assets/email.png">
+                protocolopmpf@gmail.com            
+            </div>
+        </div>
+        <!--<div style="display: flex; align-items: center;">-->
+        <!--    <div>-->
+        <!--    </div>-->
+        <!--    <div>-->
+        <!--    </div>-->
+        <!--</div>-->
+    </footer>
+
+    </body>
+    </html>
+
+

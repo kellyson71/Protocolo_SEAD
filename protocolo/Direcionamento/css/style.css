@@ -1,0 +1,237 @@
+    * {
+            box-sizing: border-box;
+    }
+            .lds-ring,
+    .lds-ring div {
+      box-sizing: border-box;
+    }
+    .lds-ring {
+      display: inline-block;
+      position: fixed; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      width: 80px;
+      height: 80px;
+      z-index: 9999; 
+    }
+    .lds-ring div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border: 8px solid #ffffff; 
+      border-radius: 50%;
+      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #ffffff transparent transparent transparent; 
+    }
+    .lds-ring div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .content {
+      display: none; 
+    }
+        body {
+            background-image: url('./assets/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-size: cover;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #023047;
+        }
+        .navbar {
+            background-color: #009640; 
+            padding: 15px;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .logo {
+            width: 70px; 
+            height: auto;
+        }
+        .navbar h1 {
+            color: white;
+            margin: 0; 
+        }
+        .line {
+            width: 100%;
+            height: 0px;
+            background: #008748; 
+            margin: 0 auto;
+        }
+        .protocol-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; 
+            margin-top: 40px;
+        }
+        .protocol-box {
+            width: min(100%, 800px); 
+            height: 98px;
+            margin: 10px;
+            border-radius: 10px;
+            background: #FFF; 
+            position: relative;
+            text-align: left;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .view-details-button {
+            background-color: #009640;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+    }
+    .view-details-button:hover {
+        background-color: #007e34; 
+    }
+        .protocol-icon {
+            width: 50px;
+            height: auto;
+            margin-right: 10px; 
+        }
+        .protocol-title {
+            color: #000; 
+            font-family: 'Siemreap', sans-serif; 
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+        .protocol-subtitle {
+            color: rgba(0, 0, 0, 0.7); 
+            font-family: 'Siemreap', sans-serif; 
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 16px;
+        }
+        .select-container {
+            margin-top: 5px; 
+            margin-left: auto; 
+        }
+        select {
+            padding: 5px; 
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .redirect-button, .butao_procurar {
+            background-color: #009640;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .redirect-button:hover, .butao_procurar {
+        background-color: #007e34; 
+    }
+        #feedback {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+        }
+    input[type="text"] {
+        padding: 8px; 
+        border-radius: 5px; 
+        border: 1px solid #ccc; 
+        font-size: 16px; 
+        margin-right: 10px; 
+    }
+    input[type="text"]:focus {
+        outline: none; 
+        border-color: #009640; 
+    }
+    @media only screen and (max-width: 767px) {
+          select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M17.293 7.293L12 12.586 6.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 00-1.414-1.414z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 20px auto;
+    padding-right: 30px; 
+  }
+        .navbar {
+            flex-direction: row; 
+            justify-content: space-between; 
+            align-items: center; 
+            text-align: center; 
+            height: 50px; 
+        }
+        .navbar h1 {
+            margin-bottom: 0; 
+            font-size: 22px ;
+        }
+        .protocol-box {
+            max-width: calc(90% - 20px); 
+            height: auto;
+            margin: 10px auto;
+            padding: 10px; 
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
+        .logo {
+            width: 40px; 
+            height: auto;
+        }
+        .redirect-button,
+        .view-details-button {
+            grid-column: span 2;
+            width: 100%;
+            margin-top: 10px; 
+        }
+        .redirect-button {
+            margin-right: 5px; 
+        }
+        .select-container {
+            margin-left: 0; 
+            grid-column: span 2;
+        }
+        #searchButton {
+            background-color: transparent; 
+            border: none; 
+            cursor: pointer; 
+        }
+        .search-icon {
+            width: 20px; 
+            height: auto; 
+        }
+    }

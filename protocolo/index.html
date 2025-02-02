@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <nav>
+
+
+            <ul>
+                <li>
+                    <a href="https://www.instagram.com/prefeituradepaudosferros/">
+                        <img src="./assets/instagram.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/prefeituradepaudosferros/">
+                        <img src="./assets/facebook.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/paudosferros">
+                        <img src="./assets/twitter.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/c/prefeituramunicipaldepaudosferros">
+                        <img src="./assets/youtube.png">
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://instagram.com">
+                        <img src="./assets/copy-url.png">
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+        <div class="user-options">
+    <button class="login-btn" onclick="location.href='../app/index.html';">Aplicativo</button>
+    <!--<img src="../assets/Secretaria Municipal de Administração - SEAD.svg" style="width: 100%; max-width: 120px; height: auto; margin-left: 10px;">-->
+        </div>
+    </header>
+    <div class="page">
+        <form method="post" class="formLogin" action="login.php" onsubmit="">
+            <h1>Protocolo</h1>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <label for="email">Setor</label>
+            <input type="text" id="email" name="username" placeholder="Digite seu e-mail" autofocus="true" required/>
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required/>
+            <!-- <a href="#" onclick="forgotPassword();"></a> -->
+            <input type="submit" value="Acessar" class="btn" />
+        </form>      
+    </div>
+    <footer class="footer">
+        <p>SEAD</p>
+    </footer>
+</body>
+</html>

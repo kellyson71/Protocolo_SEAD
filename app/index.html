@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Template for Startups</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <nav>
+                <ul>
+                    <li><a href="https://www.instagram.com/prefeituradepaudosferros/">
+                        <img src="../assets/instagram.png" alt="Instagram">
+                    </a></li>
+                    <li><a href="https://www.facebook.com/prefeituradepaudosferros/">
+                        <img src="../assets/facebook.png" alt="Facebook">
+                    </a></li>
+                    <li><a href="https://twitter.com/paudosferros">
+                        <img src="../assets/twitter.png" alt="Twitter">
+                    </a></li>
+                    <li><a href="https://www.youtube.com/c/prefeituramunicipaldepaudosferros">
+                        <img src="../assets/youtube.png" alt="YouTube">
+                    </a></li>
+                    <li><a href="https://instagram.com">
+                        <img src="../assets/copy-url.png" alt="Link">
+                    </a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    <main>
+        <div class="content">
+            <h1>ProtocoloSEAD</h1>
+            <p>Aplicativo desenvolvido para Android que permite gerenciar, visualizar e modificar os protocolos da SEAD.</p>
+            <div class="buttons">
+                <button class="learn-more" onclick="openModal()">Ler mais</button>
+                <a href="app/ProtocoloSEAD.apk" download class="download-btn">Download</a>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="phone.png" alt="Phone">
+        </div>
+    </main>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>O ProtocoloSEAD é um aplicativo desenvolvido para Android que permite gerenciar, visualizar e modificar os protocolos da SEAD de maneira prática e conveniente. Com este aplicativo, você pode acessar todas as informações necessárias na palma da sua mão, facilitando a gestão de processos e a tomada de decisões.</p>
+        </div>
+    </div>
+
+    <script >
+        function openModal() {
+    document.getElementById('myModal').style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById('myModal').style.display = "none";
+}
+
+window.onclick = function(event) {
+    var modal = document.getElementById('myModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+    </script>
+</body>
+</html>

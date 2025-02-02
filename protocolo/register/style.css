@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #023047;
+}
+.footer {
+    background-color: #009640;
+    color: white;
+    padding: 10px; 
+    text-align: center; 
+    width: 100%; 
+    bottom: 0; 
+    left: 0;
+}
+
+.footer p {
+    margin: 0; 
+}
+
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    gap: 5px
+}
+
+.areaLogin img {
+    width: 420px;
+}
+
+.formLogin h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 2.3em;
+}
+
+.formLogin p {
+    display: inline-block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.formLogin input {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: all linear 160ms;
+    outline: none;
+}
+
+
+.formLogin input:focus {
+    border: 1px solid #024287;
+}
+
+.formLogin label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.formLogin a {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #555;
+    transition: all linear 160ms;
+}
+
+.formLogin a:hover {
+    color: #024287;
+}
+
+.btn {
+    background-color: #024287;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none !important;
+    transition: all linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #0061c8;
+
+}
+:u492577848_Proto_estagio {
+    --gray-1: #CED4DA;
+    --gray-2: #6C757D;
+    --blue-1: #0DCAF0;
+    --blue-2: #024287;
+    --background: #013D86;
+    font-size: 16px;
+}
+
+.feedback {
+    color: white;
+    background-color: white;
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
+}
+
+.centered-square h2 {
+    margin-bottom: 20px;
+}
+
+.centered-square img {
+    width: 100px; /* Adjust the width of the image */
+    height: auto; /* Maintain aspect ratio */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    line-height: 1.5;
+}
+
+
+header {
+    background-color: #009640;
+    height: 48px;
+    width: 100%;
+    padding: 0 312px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 10px;
+}
+
+header nav img {
+    width: 25px;
+    height: 25px;
+}
+
+header p {
+    color: white;
+    font-size: 16px;
+}
+
+header a {
+    display: inline-block;
+    font-size: 0;
+}
+
+header button {
+    color: white;
+    font-size: 20px;
+    border: none;
+    background: none;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    padding: 3px 10px 0 10px;
+}
+
+header div.user-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+div.form-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.form-header h1 {
+    color: white;
+    font-family: Viga, sans-serif;
+    line-height: 24px;
+    font-size: 64px;
+}
+
+div.form-header p {
+    color: white;
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    margin: 18px 0 48px 0;
+}
+
+@media (max-width: 1440px) {
+    footer > div:nth-child(2),
+    header {
+        padding: 0 144px;
+    }
+}
+
+@media (max-width: 1024px) {
+    footer > div:nth-child(2),
+    header {
+        padding: 0 72px;
+    }
+
+    div.form-header h1 {
+        font-size: 48px;
+    }
+
+    div.form-header p {
+        font-size: 16px;
+    }
+
+    div.form-header img {
+        aspect-ratio: auto;
+        height: 300px;
+    }
+}/* Suas regras de estilo existentes */
+/* Suas regras de estilo existentes */
+/* Suas regras de estilo existentes *//* Suas regras de estilo existentes */
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 12px;
+    }
+
+    .page {
+        padding: 20px;
+    }
+
+    .formLogin {
+        padding: 40px; /* Aumenta o padding do formulário */
+        width: 90%; /* Ajusta a largura do formulário */
+    }
+
+    .formLogin h1 {
+        font-size: 24px; /* Ajusta o tamanho da fonte do título */
+    }
+
+    .formLogin input {
+        padding: 15px; /* Aumenta o padding dos inputs */
+        font-size: 16px; /* Ajusta o tamanho da fonte dos inputs */
+    }
+
+    header nav img {
+        width: 40px; /* Ajusta o tamanho dos ícones da navegação */
+        height: 40px; 
+    }
+
+    .user-options button {
+        font-size: 24px; /* Ajusta o tamanho da fonte dos botões */
+    }
+
+    .font-size-label {
+        display: none; /* Esconde o texto "Tamanho da fonte" em dispositivos móveis */
+    }
+
+    /* Adicione mais estilos conforme necessário para dispositivos móveis */
+}

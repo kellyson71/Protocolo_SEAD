@@ -1,0 +1,504 @@
+:root {
+    --gray-1: #CED4DA;
+    --gray-2: #6C757D;
+
+    --blue-1: #0DCAF0;
+    --blue-2: #024287;
+    --background: #013D86;
+
+    font-size: 16px;
+}
+
+.feedback {
+    color: white;
+    background-color: white;
+    
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translate(-50%);
+
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Roboto, sans-serif;
+    line-height: 1.5;
+}
+
+body {
+    background-color: var(--background);
+    background-image: url(../assets/background.jpg);
+    background-size: contain;
+}
+
+
+header {
+    background-color: #009640;
+    height: 48px;
+    width: 100%;
+    padding: 0 312px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 10px;
+}
+
+header nav img {
+    width: 25px;
+    height: 25px;
+}
+
+header p {
+    color: White;
+    font-size: 16px;
+}
+
+header a {
+    display: inline-block;
+    font-size: 0;
+}
+
+header button {
+    color: white;
+    font-size: 20px;
+    border: none;
+    background: none;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    padding: 3px 10px 0 10pxF;
+}
+
+header div.user-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+div.form-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.form-header h1 {
+    margin-top: 5%;
+    color: white;
+    font-family: Viga, sans-serif;
+    line-height: 54px;
+    font-size: 34px;
+}
+
+div.form-header p {
+    color: white;
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    margin: 18px 0 48px 0;
+}
+
+form {
+    width: 67.5%;
+    margin: auto;
+
+    padding: 40px 0 96px 0;
+}
+
+form input,
+select, div.multi-select {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--gray-1);
+    border-radius: 16px;
+    
+    background-color: white;
+
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+
+    outline: none;
+}
+#protocolo {
+    margin-top: 10px;
+    height: 500px;
+    width: 100%;
+    white-space: pre-wrap;
+    text-align: left; 
+    overflow-wrap: break-word;
+    padding: 6px;
+    border: 1px solid var(--gray-1);
+    border-radius: 6px;
+    
+    background-color: white;
+    background-image: linear-gradient(0deg, transparent 95%, rgba(0,0,0,0.1) 90%, rgba(0,0,0,0.1) 100%);
+    background-size: 100% 1.5em;
+
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+}
+#botao {
+    border-radius: 10px; /* Ajuste este valor para alterar o raio da borda */
+}
+#form-requerimento
+{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20%;
+        color: white;
+        font-family: Roboto, sans-serif;
+        font-size: 24px;
+        margin: 35px 0 12px 0;
+    }
+    
+select, option, input{
+    color: var(--blue-2);
+}
+
+select, option {
+    font-weight: 700;
+}
+
+form input::placeholder {
+    color: var(--gray-2);
+}
+
+form > input#name {
+    margin-bottom: 24px;
+}
+
+.form-part-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+div.multi-select {
+    height: calc(1.5rem + 32px);
+
+    padding: 0;
+
+    position: relative;
+}
+
+div.multi-select > div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 16px;
+    padding: 0 8px;
+    gap: 8px;
+
+    background-color: white;
+}
+
+div.multi-select.open > div {
+    height: auto;
+    z-index: 10;
+    padding-top: calc(1.5rem + 16px);
+}
+
+div.multi-select span {
+    display: inline-block;
+    width: 1rem;
+    height: 100%;
+    flex: 1 0 100%;
+    order: -5;
+    display: flex;
+    align-items: center;
+    color: var(--gray-2);
+    padding: 0 0 0 8px;
+}
+
+div.multi-select.open span {
+    display: none;
+}
+
+div.multi-select label {
+    flex: 0 0 100%;
+    /* margin: 16px 0; */
+    padding: 0 8px;
+
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--blue-2);
+}
+
+div.multi-select label input {
+    width: auto;
+    height: auto;
+}
+
+label.checked ~ span {
+    flex: 0 0 0px;
+    width: 0;
+    overflow: hidden;
+}
+
+div.multi-select:not(.open) label.checked {
+    border: 1px solid var(--blue-2);
+    flex-basis: auto;
+    height: auto;
+    align-self: center;
+    border-radius: 8px;
+
+    order: -10;
+}
+
+.form-part-3 {
+    display: flex;
+    gap: 15%;
+    color: white;
+    margin: 24px 0;
+}
+
+.form-part-3 label {
+    position: relative;
+    display: inline-block;
+    
+    padding: 8px 12px;
+    margin: 16px 6px 0 0;
+    border: 1px solid var(--blue-1);
+    border-radius: 6px;
+    color: var(--blue-1);
+}
+
+.form-part-3 label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+}
+
+
+div.form-files {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+div.form-files > div {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex: 1 0 215px;
+}
+
+div.form-files p {
+    margin-top: 8px;
+    color: #DC3545;
+}
+
+div.form-files img {
+    aspect-ratio: auto;
+    height: 10rem;
+}
+
+.form-part-4 {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-part-4 input {
+    width: auto;
+    border-radius: 5px;
+    display: inline;
+}
+
+div.captcha {
+    margin-top: 88px;
+}
+
+button[type="submit"] {
+    width: 276px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #198754;
+    color: white;
+    border: none;
+    font-size: 50px;
+    margin: 24px auto 0 auto;
+    font-weight: 700;
+}
+
+footer {
+    font-size: 16px;
+}
+
+footer > div:nth-child(1) {
+    width: 100%;
+    background-color: #00A759;
+    
+    display: flex;
+    justify-content: center;
+}
+
+footer > div:nth-child(1) div {
+    height: 144px;
+    width: 440px;
+
+    background-color: #009851;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+    font-size: 20px;
+}
+
+footer > div:nth-child(1) img {
+    height: 32px;
+    aspect-ratio: auto;
+}
+
+footer > div:nth-child(1) div:nth-child(even) {
+    background-color: #008748;
+}
+
+footer > div:nth-child(2) {
+    width: 100%;
+    height: 90px;
+    background-color: white;
+    padding: 0 312px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer > div:nth-child(2) img {
+    aspect-ratio: auto;
+    height: 70px;
+}
+
+
+#cpfInput,
+#verificarButton {
+    display: none;
+}
+
+@media (max-width: 1080px) {
+
+    footer > div:nth-child(2), header {
+        padding: 0 144px;
+    }
+
+    footer > div:nth-child(1) {
+        flex-direction: column;
+    }
+
+    footer > div:nth-child(1) div {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    footer > div:nth-child(2), header {
+        padding: 0 72px;
+    }
+
+    div.form-header h1 {
+        font-size: 48px;
+    }
+
+    div.form-header p {
+        font-size: 16px;
+    }
+
+    div.form-header img {
+        aspect-ratio: auto;
+        height: 300px;
+    }
+
+    div.form-files {
+        gap: 10px;
+    }
+
+    footer > div:nth-child(2) img {
+        height: 52px;
+    }
+
+    form {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    footer > div:nth-child(2), header {
+        padding: 0 24px;
+    }
+
+    #alter-font {
+        display: none;
+    }
+
+    footer > div:nth-child(2) {
+        font-size: 12px;
+    }
+
+    div.form-header h1 {
+        font-size: 32px;
+    }
+
+    div.form-header p {
+        font-size: 12px;
+    }
+
+    div.form-header img {
+        height: 200px;
+    }
+
+    div.form-part-2, div.form-part-3, div.form-part-4, div.form-files {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.form-files > div {
+        width: 100%;
+        gap: 10px;
+    }
+
+    div.form-part-3 {
+        gap: 24px;
+    }
+
+    footer > div:nth-child(1) div {
+        height: 72px;
+        font-size: 14px;
+    }
+
+    footer > div:nth-child(2) img {
+        height: 44px;
+    }
+
+    button[type="submit"] {
+        width: 200px;
+        height: 90px;
+
+        font-size: 32px;
+    }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Novo Protocolo</title>
+</head>
+
+<body>
+
+    <h2>Adicionar Novo Protocolo</h2>
+
+    <form action="processar_protocolo.php" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <br>
+
+        <label for="gmail">Gmail:</label>
+        <input type="text" id="gmail" name="gmail" required>
+
+        <br>
+
+        <label for="protocolo">Protocolo:</label>
+        <input type="text" id="protocolo" name="protocolo" required>
+
+        <br>
+
+        <label for="contexto">Contexto:</label>
+        <textarea id="contexto" name="contexto" required></textarea>
+
+        <br>
+
+        <input type="submit" value="Adicionar Protocolo">
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+./protocolo/media
+./media
+./assets# Diretórios de mídia e assets
+/protocolo/media/
+/protocolo/assets/
+/protocolo/formulario_protocolo/
+/protocolo/Direcionamento/assets/
+/protocolo/adm/assets/
+/media/
+/assets/
+
+# Arquivos de configuração
+.private/
+.htaccess
+.htaccess.bk
+*.config.json
+
+# Dependências
+/vendor/
+/node_modules/
+composer.phar
+
+# Arquivos de IDE/Editor
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*.swo
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.bak
+*.log
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de ambiente
+.env
+.env.local
+config.php
+
+# Arquivos de cache
+*.cache
