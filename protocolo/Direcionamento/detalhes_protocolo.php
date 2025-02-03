@@ -14,15 +14,13 @@ if (isset($_POST['hideAlert'])) {
 
 require_once '../env/config.php';
 
-header('Content-Type: application/json');
-
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
 if ($conn->connect_error) {
-    echo json_encode(array('success' => false, 'message' => 'Falha na conexão: ' . $conn->connect_error));
-    exit();
+    die(json_encode([
+        'success' => false,
+        'message' => 'Erro de conexão: ' . $conn->connect_error
+    ]));
 }
-
 // Obter o ID do protocolo
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 

@@ -21,7 +21,8 @@ if (isset($data['id'])) {
         $directory1 = $_SERVER['DOCUMENT_ROOT'] . '/media/' . $id;
         $directory2 = $_SERVER['DOCUMENT_ROOT'] . '/protocolo/Direcionamento/media/' . $id;
 
-        function deleteDirectory($dir) {
+        function deleteDirectory($dir)
+        {
             if (!file_exists($dir)) {
                 return true;
             }

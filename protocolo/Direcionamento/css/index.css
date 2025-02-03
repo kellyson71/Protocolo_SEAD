@@ -1,0 +1,824 @@
+:root {
+    --primary-color: #009640;
+    --primary-hover: #008435;
+    --secondary-color: #4CAF50;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --border-radius: 5px;
+}
+
+/* Base styles */
+body {
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+/* Common components */
+.btn {
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Protocol specific styles */
+.protocol-box {
+    width: min(100%, 1000px);
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background: #FFF;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.protocol-box:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 150, 64, 0.15);
+}
+
+/* Rest of your existing styles but consolidated... */
+.skeleton {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.skeleton-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #e0e0e0;
+}
+
+.skeleton-title {
+    width: 70%;
+    height: 20px;
+    background-color: #e0e0e0;
+}
+
+.skeleton-subtitle {
+    width: 50%;
+    height: 15px;
+    background-color: #e0e0e0;
+}
+
+.redirect-btn {
+    background-color: #007e34;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.redirect-btn:hover {
+    background-color: #45a049;
+}
+
+.lds-ring,
+.lds-ring div {
+    box-sizing: border-box;
+}
+
+.lds-ring {
+    display: inline-block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    z-index: 9999;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #ffffff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content {
+    display: none;
+    flex: 1;
+}
+
+#customFooter {
+    background-color: #333;
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footerButton,
+.footerLink {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.footerButton:hover,
+.footerLink:hover {
+    background-color: #45a049;
+}
+
+.footerLink {
+    background-color: transparent;
+    border: 2px solid #4CAF50;
+}
+
+.footerLink:hover {
+    background-color: #4CAF50;
+}
+
+.footerText {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.redirect-dropdown {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #009640;
+    font-size: 14px;
+    background-color: white;
+    color: #009640;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: auto;
+    width: 180px;
+    /* Change min-width to fixed width */
+    white-space: nowrap;
+    /* Prevent text wrapping */
+    overflow: hidden;
+    /* Hide overflow text */
+    text-overflow: ellipsis;
+    /* Show ... for overflow text */
+}
+
+.redirect-dropdown option {
+    width: 180px;
+    /* Match dropdown width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.protocol-info-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.protocol-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* Melhorar transições */
+.filter-button,
+.view-details-button,
+.redirect-dropdown {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Feedback visual nos botões */
+.filter-button:active,
+.view-details-button:active {
+    transform: scale(0.98);
+}
+
+/* Melhorar contraste e legibilidade */
+.protocol-title {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.protocol-subtitle {
+    color: #4a4a4a;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #009640;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Melhorar hover states */
+.protocol-box {
+    border: 1px solid transparent;
+}
+
+.protocol-box:hover {
+    border-color: #009640;
+    box-shadow: 0 4px 12px rgba(0, 150, 64, 0.1);
+}
+
+.view-details-button:hover {
+    background-color: #008435;
+}
+
+/* Estilizar Flatpickr */
+.flatpickr-calendar {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flatpickr-day.selected {
+    background: #009640 !important;
+    border-color: #009640 !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .department-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M17.293 7.293L12 12.586 6.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 00-1.414-1.414z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px top 50%;
+        background-size: 20px auto;
+        padding-right: 30px;
+    }
+
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        height: 50px;
+    }
+
+    .navbar h1 {
+        margin-bottom: 0;
+        font-size: 22px;
+    }
+
+    .protocol-box {
+        max-width: calc(90% - 20px);
+        height: auto;
+        margin: 10px auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .protocol-info-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .protocol-actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .redirect-dropdown,
+    .view-details-button {
+        width: 100%;
+        margin: 0;
+    }
+
+    .protocol-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo {
+        width: 40px;
+        height: auto;
+    }
+
+    .redirect-button,
+    .view-details-button {
+        grid-column: span 2;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .redirect-button {
+        margin-right: 5px;
+    }
+
+    .select-container {
+        margin-left: 0;
+        grid-column: span 2;
+    }
+
+    #searchButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-icon {
+        width: 20px;
+        height: auto;
+    }
+
+    /* Adicionar estas novas regras para a paginação */
+    .inline-flex.items-center.space-x-2 {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .inline-flex.items-center.space-x-2 a,
+    .inline-flex.items-center.space-x-2 span {
+        padding: 5px 10px;
+        font-size: 14px;
+        min-width: 35px;
+        text-align: center;
+    }
+
+    /* Esconder alguns elementos da paginação em telas pequenas */
+    .inline-flex.items-center.space-x-2 a:not(:first-child):not(:last-child):not([class*="bg-[#009640]"]) {
+        display: none;
+    }
+
+    /* Manter visível apenas os botões de navegação e página atual */
+    .inline-flex.items-center.space-x-2 span[class*="bg-[#009640]"],
+    .inline-flex.items-center.space-x-2 a:first-child,
+    .inline-flex.items-center.space-x-2 a:last-child {
+        display: inline-flex;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
+/* Adicionar estilos para feedback visual */
+.feedback-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feedback-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feedback-icon {
+    font-size: 1.2em;
+    animation: feedback-icon-animation 0.3s ease;
+}
+
+@keyframes feedback-icon-animation {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.loading-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+}
+
+/* Modal de confirmação */
+.confirmation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.confirmation-modal.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Modal backdrop with blur */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+#precensial {
+    background-color: red;
+}
+
+.navbar {
+    background-color: #009640;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 70px;
+    height: auto;
+}
+
+.navbar h1 {
+    color: white;
+    margin: 0;
+}
+
+.line {
+    width: 100%;
+    height: 0px;
+    background: #008748;
+    margin: 0 auto;
+}
+
+.protocol-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.view-details-button {
+    background-color: #009640;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-details-button:hover {
+    background-color: #007e34;
+}
+
+.protocol-icon {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.protocol-title {
+    color: #000;
+    font-family: 'Siemreap', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.protocol-subtitle {
+    color: rgba(0, 0, 0, 0.7);
+    font-family: 'Siemreap', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.select-container {
+    margin-top: 5px;
+    margin-left: auto;
+}
+
+.department-select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 200px;
+}
+
+.redirect-button,
+.butao_procurar {
+    background-color: #009640;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.redirect-button:hover,
+.butao_procurar {
+    background-color: #007e34;
+}
+
+#feedback {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #009640;
+}
+
+.filter-buttons {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.filter-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+    background-color: #45a049;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .department-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M17.293 7.293L12 12.586 6.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 00-1.414-1.414z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px top 50%;
+        background-size: 20px auto;
+        padding-right: 30px;
+    }
+
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        height: 50px;
+    }
+
+    .navbar h1 {
+        margin-bottom: 0;
+        font-size: 22px;
+    }
+
+    .protocol-box {
+        max-width: calc(90% - 20px);
+        height: auto;
+        margin: 10px auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .protocol-info-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .protocol-actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .redirect-dropdown,
+    .view-details-button {
+        width: 100%;
+        margin: 0;
+    }
+
+    .protocol-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo {
+        width: 40px;
+        height: auto;
+    }
+
+    .redirect-button,
+    .view-details-button {
+        grid-column: span 2;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .redirect-button {
+        margin-right: 5px;
+    }
+
+    .select-container {
+        margin-left: 0;
+        grid-column: span 2;
+    }
+
+    #searchButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-icon {
+        width: 20px;
+        height: auto;
+    }
+
+    /* Adicionar estas novas regras para a paginação */
+    .inline-flex.items-center.space-x-2 {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .inline-flex.items-center.space-x-2 a,
+    .inline-flex.items-center.space-x-2 span {
+        padding: 5px 10px;
+        font-size: 14px;
+        min-width: 35px;
+        text-align: center;
+    }
+
+    /* Esconder alguns elementos da paginação em telas pequenas */
+    .inline-flex.items-center.space-x-2 a:not(:first-child):not(:last-child):not([class*="bg-[#009640]"]) {
+        display: none;
+    }
+
+    /* Manter visível apenas os botões de navegação e página atual */
+    .inline-flex.items-center.space-x-2 span[class*="bg-[#009640]"],
+    .inline-flex.items-center.space-x-2 a:first-child,
+    .inline-flex.items-center.space-x-2 a:last-child {
+        display: inline-flex;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+}

@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require __DIR__.'/../../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 require_once '../env/config.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
