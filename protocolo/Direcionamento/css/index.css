@@ -54,6 +54,18 @@ body {
     box-shadow: 0 4px 12px rgba(0, 150, 64, 0.15);
 }
 
+.protocol-box[data-estado="1"] {
+    background-color: #f8f8f8;
+    border-left: 3px solid #90a4ae;
+    opacity: 0.85;
+}
+
+.protocol-box[data-estado="1"]:hover {
+    opacity: 1;
+    border-color: #90a4ae;
+    box-shadow: 0 4px 12px rgba(144, 164, 174, 0.15);
+}
+
 /* Rest of your existing styles but consolidated... */
 .skeleton {
     background-color: #e0e0e0;
@@ -307,6 +319,17 @@ body {
 .flatpickr-day.selected {
     background: #009640 !important;
     border-color: #009640 !important;
+}
+
+.protocol-deadline {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 4px;
+}
+
+.protocol-deadline.expired {
+    color: #d32f2f;
+    font-weight: 500;
 }
 
 @media only screen and (max-width: 767px) {

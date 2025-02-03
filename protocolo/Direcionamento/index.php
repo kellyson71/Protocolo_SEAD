@@ -464,18 +464,22 @@ if ($result->num_rows > 0) {
                 protocolInfo.appendChild(protocolTitle);
                 protocolInfo.appendChild(protocolSubtitle);
 
+                // Adicionar data de prazo para todos (mover para fora da condição de admin)
+                const prazoElement = document.createElement('div');
+                prazoElement.classList.add('protocol-subtitle', 'protocol-deadline');
+                prazoElement.innerHTML = "Prazo: " + diaSemanaPrazo + dataFormatada;
+
+                if (prazo < new Date()) {
+                    prazoElement.style.color = 'red';
+                }
+
                 // Apenas mostrar departamento atual para admins
                 if (<?php echo isUserAdmin($conn, $_GET["dep"]) ? 'true' : 'false'; ?>) {
                     const departamentoAtualElement = document.createElement('div');
                     departamentoAtualElement.classList.add('protocol-subtitle');
                     const formattedDepartamento = formatText(departamentoAtual);
-                    departamentoAtualElement.innerHTML = 'Departamento Atual: ' + formattedDepartamento + "<br>" +
-                        "prazo: " +
-                        diaSemanaPrazo + dataFormatada;
+                    departamentoAtualElement.innerHTML = 'Departamento Atual: ' + formattedDepartamento;
 
-                    if (prazo < new Date()) {
-                        departamentoAtualElement.style.color = 'red';
-                    }
                     if (estado == 2) {
                         departamentoAtualElement.style.color = 'blue';
                         departamentoAtualElement.textContent = "A concluir";
@@ -483,6 +487,8 @@ if ($result->num_rows > 0) {
 
                     protocolInfo.appendChild(departamentoAtualElement);
                 }
+
+                protocolInfo.appendChild(prazoElement);
 
                 const redirectDropdown = document.createElement('select');
                 redirectDropdown.classList.add('redirect-dropdown');
@@ -557,9 +563,10 @@ if ($result->num_rows > 0) {
                 protocolBox.appendChild(protocolActions);
 
                 if (estado === "1") {
-                    // Add styling to show completed protocols
-                    protocolBox.style.backgroundColor = '#e8f5e9';
-                    protocolBox.style.borderLeft = '4px solid #4CAF50';
+                    // Estilo mais sutil para protocolos concluídos
+                    protocolBox.style.backgroundColor = '#f8f8f8';
+                    protocolBox.style.borderLeft = '3px solid #90a4ae';
+                    protocolBox.style.opacity = '0.85';
                 }
 
                 container.appendChild(protocolBox);
