@@ -154,8 +154,7 @@ if ($result->num_rows > 0) {
                 <div class="flex">
                     <select id="searchField"
                         class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100">
-                        <option value="" disabled selected>Tipo de pesquisa</option>
-                        <option value="protocol-title">Título</option>
+                        <option value="protocol-title" selected>Título</option>
                         <option value="protocol-subtitle">ID</option>
                         <option value="protocol-name">Nome</option>
                         <option value="protocol-gmail">Gmail</option>
@@ -452,23 +451,38 @@ if ($result->num_rows > 0) {
                 protocolSubtitle.classList.add('protocol-subtitle');
                 protocolSubtitle.textContent = 'Nº de protocolo: ' + id;
 
-                const departamentoAtualElement = document.createElement('div');
-                departamentoAtualElement.classList.add('protocol-subtitle');
-                const formattedDepartamento = formatText(departamentoAtual);
-                departamentoAtualElement.innerHTML = 'Departamento Atual: ' + formattedDepartamento + "<br>" + "prazo: " +
-                    diaSemanaPrazo + dataFormatada;
+                const protocolDate = document.createElement('div');
+                protocolDate.classList.add('protocol-date');
+                protocolDate.textContent = data;
+                protocolBox.appendChild(protocolDate);
 
-                if (prazo < new Date()) {
-                    departamentoAtualElement.style.color = 'red';
-                }
-                if (estado == 2) {
-                    departamentoAtualElement.style.color = 'blue';
-                    departamentoAtualElement.textContent = "A concluir";
-                }
+                const protocolOwner = document.createElement('div');
+                protocolOwner.classList.add('protocol-owner');
+                protocolOwner.textContent = `Solicitante: ${nome}`;
+                protocolInfo.appendChild(protocolOwner);
 
                 protocolInfo.appendChild(protocolTitle);
                 protocolInfo.appendChild(protocolSubtitle);
-                protocolInfo.appendChild(departamentoAtualElement);
+
+                // Apenas mostrar departamento atual para admins
+                if (<?php echo isUserAdmin($conn, $_GET["dep"]) ? 'true' : 'false'; ?>) {
+                    const departamentoAtualElement = document.createElement('div');
+                    departamentoAtualElement.classList.add('protocol-subtitle');
+                    const formattedDepartamento = formatText(departamentoAtual);
+                    departamentoAtualElement.innerHTML = 'Departamento Atual: ' + formattedDepartamento + "<br>" +
+                        "prazo: " +
+                        diaSemanaPrazo + dataFormatada;
+
+                    if (prazo < new Date()) {
+                        departamentoAtualElement.style.color = 'red';
+                    }
+                    if (estado == 2) {
+                        departamentoAtualElement.style.color = 'blue';
+                        departamentoAtualElement.textContent = "A concluir";
+                    }
+
+                    protocolInfo.appendChild(departamentoAtualElement);
+                }
 
                 const redirectDropdown = document.createElement('select');
                 redirectDropdown.classList.add('redirect-dropdown');
@@ -921,3 +935,31 @@ $conn->close();
         <p>Desenvolvido por Kellyson R. Medeiros da S.</p>
     </div>
 </footer>
+
+<style>
+    .protocol-box {
+        position: relative;
+    }
+
+    .protocol-date {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 0.875rem;
+        color: #666;
+    }
+
+    .protocol-owner {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 4px;
+    }
+
+    @media (max-width: 767px) {
+        .protocol-date {
+            position: static;
+            text-align: right;
+            margin-bottom: 8px;
+        }
+    }
+</style>
