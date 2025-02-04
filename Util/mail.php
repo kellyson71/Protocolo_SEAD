@@ -2,10 +2,11 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-require_once(__DIR__ . '/../lib/vendor/autoload.php');
+// Corrigir o caminho do autoload
+require_once(__DIR__ . '/../vendor/autoload.php');
 
 // Configuração do modo de teste
-$TEST_MODE = false; // Mude para false quando quiser enviar emails reais
+$TEST_MODE = true; // Mude para false quando quiser enviar emails reais
 
 error_log("chamado ");
 

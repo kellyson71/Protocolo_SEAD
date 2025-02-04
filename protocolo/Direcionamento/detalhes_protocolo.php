@@ -458,9 +458,9 @@ function formatDepartamento($dep)
         }
 
         function executeEmail() {
-            const button = document.querySelector('button[data-action="send-email"]');
-            if (!button) return;
+            console.log('Iniciando processo...'); // Debug
 
+            const button = document.querySelector('.modal-buttons .button');
             const spinnerContainer = button.querySelector('.spinner-container');
             const spinner = button.querySelector('.spinner');
             const icon = button.querySelector('.fa-envelope');
@@ -473,43 +473,39 @@ function formatDepartamento($dep)
             if (text) text.textContent = 'Enviando...';
 
             const id = <?php echo $id; ?>;
-            fetch('atualizar.php', {
+
+            // Envia diretamente para enviar_email.php que vai fazer tudo
+            fetch('enviar_email.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        id: id,
-                        column: 'estado',
-                        new_value: '1'
+                        id: id
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        showFeedback(MESSAGES.EMAIL_SUCCESS, 'success');
+                        showFeedback(data.message, 'success');
                         setTimeout(() => {
                             window.location.reload();
                         }, 2000);
                     } else {
-                        showFeedback(data.message || MESSAGES.EMAIL_ERROR, 'error');
-                        // Restaura o botão ao estado original em caso de erro
-                        button.disabled = false;
-                        if (spinner) spinner.style.display = 'none';
-                        if (icon) icon.style.display = 'inline-block';
-                        if (text) text.textContent = 'Confirmar';
+                        throw new Error(data.message || 'Erro ao processar solicitação');
                     }
-                    closeEmailModal();
                 })
                 .catch(error => {
                     console.error('Erro:', error);
-                    showFeedback(MESSAGES.EMAIL_ERROR, 'error');
-                    closeEmailModal();
-                    // Restaura o botão ao estado original em caso de erro
+                    showFeedback(error.message || 'Erro ao processar a solicitação', 'error');
+                    // Restaura o botão
                     button.disabled = false;
                     if (spinner) spinner.style.display = 'none';
                     if (icon) icon.style.display = 'inline-block';
                     if (text) text.textContent = 'Confirmar';
+                })
+                .finally(() => {
+                    closeEmailModal();
                 });
         }
 
@@ -580,19 +576,38 @@ function formatDepartamento($dep)
     <h2>Arquivos na Pasta</h2>
     <ul class="file-list">
         <?php
-
+        error_reporting(0); // Desabilita avisos de erro
         $directory = '../../media/' . $id;
         $path_to_files = '../../media/' . $id . '/';
 
-        if (is_dir($directory) && !empty(scandir($directory))) {
+        if (is_dir($directory)) {
             $files = scandir($directory);
-            if ($file != "." && $file != "..") {
-                echo "<li><a class='file-link' href='$path_to_files/$file'>$file</a></li>";
+            if (count($files) > 2) { // mais que . e ..
+                foreach ($files as $file) {
+                    if ($file != "." && $file != "..") {
+                        $file_path = $path_to_files . $file;
+                        echo "<li class='file-item'>";
+                        if (file_exists($file_path)) {
+                            echo "<a class='file-link' href='" . htmlspecialchars($path_to_files . rawurlencode($file)) . "' target='_blank'>
+                                    <i class='fas fa-file file-icon'></i>
+                                    " . htmlspecialchars($file) . "
+                                </a>";
+                        } else {
+                            echo "<span class='file-unavailable'>
+                                    <i class='fas fa-file-excel file-icon'></i>
+                                    " . htmlspecialchars($file) . "
+                                    <span class='file-error'>Arquivo não encontrado</span>
+                                </span>";
+                        }
+                        echo "</li>";
+                    }
+                }
+            } else {
+                echo "<li>Sem documentos</li>";
             }
         } else {
             echo "<li>Sem documentos</li>";
         }
-
         ?>
     </ul>
 </div>
@@ -754,7 +769,7 @@ function formatDepartamento($dep)
         <h2>Confirmar Envio de E-mail</h2>
         <p>Tem certeza que deseja concluir este protocolo e enviar notificação por e-mail?</p>
         <div class="modal-buttons">
-            <button class="button" data-action="send-email">
+            <button onclick="executeEmail()" class="button">
                 <span class="spinner-container">
                     <div class="spinner"></div>
                     <i class="fas fa-envelope"></i>

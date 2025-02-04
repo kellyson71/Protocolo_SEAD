@@ -681,3 +681,42 @@ select {
         transform: rotate(90deg);
     }
 }
+
+/* Atualizar estilos do modal e botões */
+.modal-buttons .button {
+    color: #ffffff;
+}
+
+.modal-buttons .button .button-text,
+.modal-buttons .button .fa-envelope {
+    color: #ffffff;
+}
+
+/* Adicionar estilos para arquivos não encontrados */
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.file-unavailable {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6c757d;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.file-error {
+    font-size: 12px;
+    color: #dc3545;
+    margin-left: 8px;
+    font-style: italic;
+}
+
+.file-icon.fa-file-excel {
+    color: #dc3545;
+    opacity: 0.5;
+}

@@ -8,7 +8,7 @@
 /protocolo/adm/assets/
 /media/
 /assets/
-
+/sandbox
 # Arquivos de configuração
 .private/
 .htaccess
