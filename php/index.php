@@ -7,6 +7,7 @@ define('USER', 'u492577848_Proto_estagio');
 define('DBPASSWORD', 'Kellys0n_123');
 
 require __DIR__ . '/../vendor/autoload.php'; // Ajuste conforme necessário
+require_once(__DIR__ . '/../Util/mail.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -130,74 +131,76 @@ try {
     );
 
     if ($stmt->execute()) {
-        echo json_encode(array("message" => "Protocolo criado com sucesso! Você receberá um e-mail de confirmação."));
+        // Gerar o token e atualizar no banco
+        $token = bin2hex(random_bytes(16));
+        $stmt = $conn->prepare("UPDATE protocolos SET token = ? WHERE id = ?;");
+        $stmt->bind_param('si', $token, $numeroProtocolo);
+        $stmt->execute();
 
-        // Envio de e-mail
-        try {
-            $token = bin2hex(random_bytes(16));
+        // Preparar o corpo do email
+        $emailBody = "
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; }
+                    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                    .header { background-color: #009640; color: white; padding: 20px; text-align: center; }
+                    .content { padding: 20px; }
+                    .footer { background-color: #f4f4f4; padding: 20px; text-align: center; }
+                    .info { margin: 20px 0; }
+                    .contact { margin-top: 20px; }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <div class='header'>
+                        <h2>Protocolo Registrado com Sucesso</h2>
+                    </div>
+                    <div class='content'>
+                        <p>Olá {$data['name']},</p>
+                        <div class='info'>
+                            <p>Seu protocolo foi registrado com sucesso:</p>
+                            <ul>
+                                <li>Número do Protocolo: {$numeroProtocolo}</li>
+                                <li>Assunto: {$data['assunto']}</li>
+                            </ul>
+                        </div>
+                        <p>Para confirmar a leitura deste e-mail, acesse: 
+                            <a href='https://protocolosead.com/confirmar_leitura.php?id={$numeroProtocolo}&token={$token}'>
+                                Confirmar Leitura
+                            </a>
+                        </p>
+                        <p>Aguarde nosso contato para dar continuidade ao processo do seu requerimento.</p>
+                        <div class='contact'>
+                            <p><strong>Em caso de dúvidas:</strong></p>
+                            <ul>
+                                <li>E-mail: protocolopmpf@gmail.com</li>
+                                <li>WhatsApp: (84) 99858-6712</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class='footer'>
+                        <p>Esta é uma mensagem automática. Por favor, não responda este e-mail.</p>
+                        <p>SEAD - Secretaria de Administração<br>Prefeitura Municipal de Pau dos Ferros</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        ";
 
-            // Armazenar o token no banco de dados
-            $stmt = $conn->prepare("UPDATE protocolos SET token = ? WHERE id = ?;");
-            $stmt->bind_param('si', $token, $numeroProtocolo);
-            $stmt->execute();
+        // Enviar email usando o mail.php
+        $enviado = sendMail(
+            $data['email'],
+            $data['name'],
+            'Protocolo registrado com sucesso',
+            $emailBody
+        );
 
-            // Configuração do e-mail
-            $mail = new PHPMailer(true); // true habilita exceções
-            $mail->isSMTP();
-            $mail->Host = 'smtp.hostinger.com';
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = "ssl";
-            $mail->Username = 'proto_sead@potocolo.estagiopaudosferros.com';
-            $mail->setFrom('proto_sead@potocolo.estagiopaudosferros.com', 'Prefeitura de Pau dos Ferros');
-            $mail->Password = 'Teste123!';
-            $mail->Port = 465;
-
-            $mail->addAddress($data['email'], $data['name']);
-            $mail->Subject = '=?UTF-8?B?' . base64_encode('Protocolo registrado com sucesso') . '?=';
-            $mail->Body    = '
-                <html>
-                <head>
-                    <style>
-                        .link-confirm {
-                            color: #007bff;
-                            font-weight: bold;
-                            text-decoration: none;
-                            transition: color 0.3s ease;
-                        }
-                        .link-confirm:hover {
-                            color: #0056b3;
-                            text-decoration: underline;
-                        }
-                    </style>
-                </head>
-                <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-                    <p>Olá ' . $data['name'] . ',</p>
-                    <p>Informamos que seu protocolo foi registrado com sucesso:</p>
-                    <ul>
-                        <li>Número do Protocolo: ' . $numeroProtocolo . '</li>
-                        <li>Assunto: ' . $data['assunto'] . '</li>
-                    </ul>
-                    <p>Para confirmar a leitura deste e-mail, por favor, clique no link: <a href="https://protocolosead.com/confirmar_leitura.php?id=' . $numeroProtocolo . '&token=' . $token . '" class="link-confirm">Confirmar Leitura</a></p>
-                    <p>Aguarde nosso contato para dar continuidade ao processo do seu requerimento.</p>
-                    <hr>
-                    <p><strong>Em caso de dúvidas:</strong></p>
-                    <ul>
-                        <li>E-mail: protocolopmpf@gmail.com</li>
-                        <li>WhatsApp: (84) 99858-6712</li>
-                    </ul>
-                    <p><em>Esta é uma mensagem automática. Por favor, não responda este e-mail.</em></p>
-                    <p>Atenciosamente,<br>SEAD - Secretaria de Administração<br>Prefeitura Municipal de Pau dos Ferros</p>
-                </body>
-                </html>
-            ';
-            $mail->isHTML(true);
-
-            if (!$mail->send()) {
-                error_log('Erro ao enviar e-mail: ' . $mail->ErrorInfo);
-            }
-        } catch (Exception $e) {
-            error_log('Erro ao configurar o e-mail: ' . $e->getMessage());
+        if (!$enviado) {
+            error_log("Erro ao enviar email para: " . $data['email']);
         }
+
+        echo json_encode(array("message" => "Protocolo criado com sucesso! Você receberá um e-mail de confirmação."));
     } else {
         throw new Exception("Erro no cadastro: " . $stmt->error);
     }
