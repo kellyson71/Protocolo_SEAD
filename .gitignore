@@ -14,12 +14,14 @@
 .htaccess
 .htaccess.bk
 *.config.json
-
+estagio/
 # Dependências
 /vendor/
 /node_modules/
 composer.phar
-
+env/
+tests/
+database/
 # Arquivos de IDE/Editor
 .vscode/
 .idea/

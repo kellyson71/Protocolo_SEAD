@@ -3,12 +3,51 @@
 use PHPMailer\PHPMailer\PHPMailer;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
+require_once(__DIR__ . '/../env/config.php');
 
-$TEST_MODE = true; // Mude para false quando quiser enviar emails reais
+$TEST_MODE = false;
 
-error_log("chamado ");
+function logEmail($protocolo_id, $email_destino, $assunto, $mensagem, $status, $erro = null)
+{
+    $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-function sendMail($email, $nome, $assunto, $mensagem)
+    if ($conn->connect_error) {
+        error_log("Erro de conexão com banco: " . $conn->connect_error);
+        return false;
+    }
+
+    // Pega o usuário da sessão
+    session_start();
+    $usuario = isset($_SESSION['username']) ? $_SESSION['username'] : 'Sistema';
+
+    $sql = "INSERT INTO email_logs (protocolo_id, email_destino, assunto, mensagem, usuario_envio, status, erro) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param(
+        "issssss",
+        $protocolo_id,
+        $email_destino,
+        $assunto,
+        $mensagem,
+        $usuario,
+        $status,
+        $erro
+    );
+
+    $result = $stmt->execute();
+
+    if (!$result) {
+        error_log("Erro ao registrar log: " . $stmt->error);
+    }
+
+    $stmt->close();
+    $conn->close();
+
+    return $result;
+}
+
+function sendMail($email, $nome, $assunto, $mensagem, $protocolo_id = null)
 {
     error_log("Função sendMail chamada para: $email");
     global $TEST_MODE;
@@ -34,25 +73,36 @@ function sendMail($email, $nome, $assunto, $mensagem)
         $mail->CharSet = 'UTF-8';
         $mail->Encoding = 'base64';
 
-        $mail->Username = 'proto_sead@potocolo.estagiopaudosferros.com';
-        $mail->Password = 'Teste123!';
+        $mail->Username = 'naoresponder@protocolosead.com';
+        $mail->Password = 'Kellys0n_123';
         $mail->Port = 465;
 
-        $mail->setFrom('proto_sead@potocolo.estagiopaudosferros.com', 'Prefeitura de Pau dos Ferros');
+        $mail->setFrom('naoresponder@protocolosead.com', 'Prefeitura de Pau dos Ferros');
         $mail->addAddress($email, $nome);
         $mail->Subject = '=?UTF-8?B?' . base64_encode($assunto) . '?=';
         $mail->isHTML(true);
         $mail->Body = mb_convert_encoding($mensagem, 'UTF-8', 'UTF-8');
 
         if (!$mail->send()) {
-            error_log("Erro ao enviar email: " . $mail->ErrorInfo);
+            $erro = $mail->ErrorInfo;
+            error_log("Erro ao enviar email: " . $erro);
+            if ($protocolo_id) {
+                logEmail($protocolo_id, $email, $assunto, $mensagem, 'ERRO', $erro);
+            }
             return false;
         } else {
             error_log("Email enviado com sucesso para: " . $email);
+            if ($protocolo_id) {
+                logEmail($protocolo_id, $email, $assunto, $mensagem, 'SUCESSO');
+            }
             return true;
         }
     } catch (Exception $e) {
-        error_log("Exceção ao enviar email: " . $e->getMessage());
+        $erro = $e->getMessage();
+        error_log("Exceção ao enviar email: " . $erro);
+        if ($protocolo_id) {
+            logEmail($protocolo_id, $email, $assunto, $mensagem, 'ERRO', $erro);
+        }
         return false;
     }
 }
